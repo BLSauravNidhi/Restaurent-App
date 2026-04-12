@@ -1,0 +1,17 @@
+.sidenav-ul {
+    height: auto !important;
+}
+
+.hide-arrow {
+    display: none !important;
+}
+
+.show-arrow {
+    display: block !important;
+}
+
+.current-tab {
+    fill: oklch(62.3% 0.214 259.815) !important;
+    color: oklch(62.3% 0.214 259.815) !important;
+    background-color: oklch(93.2% 0.032 255.585) !important;
+}

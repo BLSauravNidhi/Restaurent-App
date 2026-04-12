@@ -37,12 +37,5 @@ class AdminSeeder extends Seeder
         $exampleAdmins->each(function($user){
             RestaurentAdmin::create($user);
         });
-
-        // RestaurentAdmin::create([
-        //     'admin_name' => 'admin',
-        //     'email' => 'admin@123' ,
-        //     'password' => 'admin@123',
-        //     'role' => 'administrator',
-        // ]);
     }
 }

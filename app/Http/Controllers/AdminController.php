@@ -18,17 +18,13 @@ class AdminController extends Controller
     }
     // admin dashboard 
     public function dashboard() {
-        // if(Auth::guard('admin')->user()->role == 'administrator'){
-        //     return view('admin.admin-dashboard');
-        // }
-
         switch(Auth::guard('admin')->user()->role){
             case 'administrator':
-                return view('admin.admin-dashboard');
+                return view('admin.admin-dashboard-analytics');
             case 'waiter':
-                return view('admin.waiter-dashboard');
+                return view('admin.waiter-dashboard-analytics');
             case 'kitchen':
-                return view('admin.kitchen-dashboard');
+                return view('admin.kitchen-dashboard-analytics');
         }
     }
 
@@ -52,6 +48,6 @@ class AdminController extends Controller
     // logout 
     public function logout(){
         Auth::guard('admin')->logout();
-        return redirect()->route('AdminLogin');
+        return view('admin.login');
     }
 }

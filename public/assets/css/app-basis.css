@@ -17,7 +17,7 @@ body::-webkit-scrollbar {
 }
 
 :root {
-    --app-theme: oklch(0% 0 0);
+    --app-theme: oklch(100% 0.00011 271.152);
 
     --lobster: "Lobster", sans-serif;
     --montserrat: "Montserrat", sans-serif;
