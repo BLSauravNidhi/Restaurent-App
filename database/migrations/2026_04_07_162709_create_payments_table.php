@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id')->comment('FK orders.id');
+            $table->foreignId('order_id')->references('id')->on('orders')->comment('FK orders.id');
             $table->decimal('amount', 10, 2);
             $table->enum('method',['cash', 'upi', 'card'])->comment('cash, upi, card');
             $table->enum('status',['pending', 'compleated', 'failed'])->comment('pending, compleated, failed');

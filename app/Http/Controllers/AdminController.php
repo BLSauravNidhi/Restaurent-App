@@ -46,9 +46,14 @@ class AdminController extends Controller
         }
     }
 
+    // admin pages ----------------------------------------------------
     public function analytics(){
         return view('admin.administrator.admin-analytics');
     }
+    public function manageStaff(){
+        return view('admin.administrator.manage-staff');
+    }
+    // ----------------------------------------------------------------
 
     // logout 
     public function logout(){

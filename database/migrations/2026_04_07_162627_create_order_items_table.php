@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id')->comment('FK orders.id');
-            $table->integer('menu_item_id')->comment('FK menu_items.id');
+            $table->foreignId('order_id')->references('id')->on('orders')->comment('FK orders.id');
+            $table->foreignId('menu_item_id')->references('id')->on('menu_items')->comment('FK menu_items.id');
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
         });
