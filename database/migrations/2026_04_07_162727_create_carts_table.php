@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->integer('session_id')->comment('FK table_sessions.id');
+            $table->foreignId('session_id')->references('id')->on('table_sessions')->comment('FK table_sessions.id');
         });
     }
 

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id')->comment('FK categories.id');
+            $table->foreignId('category_id')->references('id')->on('categories')->comment('FK categories.id');
             $table->string('item_name');
             $table->text('discription')->nullable();
             $table->decimal('price', 10, 2);

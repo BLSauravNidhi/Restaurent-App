@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('table_id')->comment('FK tables.id');
-            $table->integer('session_id')->comment('FK table_sessions.id');
+            $table->foreignId('table_id')->references('id')->on('tables')->comment('FK tables.id');
+            $table->foreignId('session_id')->references('id')->on('table_sessions')->comment('FK table_sessions.id');
             $table->enum('status',['pending', 'prepairing', 'ready', 'served', 'paid', 'cancelled'])
                 ->comment('pending, prepairing, ready, served, paid, cancelled');
             $table->decimal('total_amount', 10, 2);
