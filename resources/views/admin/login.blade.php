@@ -11,7 +11,7 @@
 <body>
     <div class="w-screen h-screen bg-gray-900 flex flex-col justify-start items-center">
         <div class="w-screen min-h-20 mt-6">
-            @if ($errors->has('email'))
+        @if ($errors->has('email'))
             <p class=" px-4 py-1.5 bg-amber-200 text-red-500 w-fit mx-auto rounded-md outline outline-amber-700">{{ $errors->first('email') }}</p>
         @endif
         </div>

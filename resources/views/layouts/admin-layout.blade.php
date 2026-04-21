@@ -61,8 +61,8 @@
                             </div>
                         </button>
                         <ul class=" h-0 overflow-hidden dropdown-list w-full list-disc list-inside flex flex-col gap-1">
-                            <a href="{{ route('AdminManageStaff')}}">
-                                <li class=" {{ request()->routeIs('AdminManageStaff') ? 'current-sub-tab' : ''}} py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Manage</li></a>
+                            <a href="{{ route('manage-worker.index')}}">
+                                <li class=" {{ request()->routeIs('manage-worker.index') ? 'current-sub-tab' : ''}} py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Manage</li></a>
                             <a href="">
                                 <li class=" py-2 px-4 rounded-md text-gray-500 hover:text-black hover:bg-gray-200">Privileges</li></a>
                         </ul>
