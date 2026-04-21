@@ -8,9 +8,7 @@ class RestaurentAdmin extends Authenticatable
 {
     public $timestamps = false;
 
-    protected $fillable = [
-        'name', 'email', 'password', 'role', 
-    ];
+    protected $guarded = [];
 
     // protected $hidden = [
     //     'password', 'remember_token',

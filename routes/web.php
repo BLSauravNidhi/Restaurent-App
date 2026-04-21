@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ManageWorkerController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\isLoggedIn;
+use Illuminate\Support\Facades\Route;
 
 
 
@@ -20,7 +21,11 @@ Route::domain('admin.' . env('APP_DOMAIN'))->group(function() {
     Route::middleware(isLoggedIn::class)->group(function(){
         Route::get('/dashboard',[AdminController::class, 'dashboard'])->name('AdminDashboard');
         Route::get('/dashboard/analytics',[AdminController::class, 'analytics'])->name('AdminAnalytics');
-        Route::get('/dashboard/manage',[AdminController::class, 'manageStaff'])->name('AdminManageStaff');
+        // manage workers 
+        Route::resource('dashboard/manage-worker', ManageWorkerController::class)->only([
+            'index','store','update','destroy','edit'
+        ]);
+
         Route::get('/logout',[AdminController::class, 'logout'])->name('logout');
     });
 });

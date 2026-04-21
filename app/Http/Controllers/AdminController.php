@@ -51,13 +51,7 @@ class AdminController extends Controller
     public function analytics(){
         return view('admin.administrator.admin-analytics');
     }
-    public function manageStaff(){
-        $workers = RestaurentAdmin::where('role','waiter')
-            ->orWhere('role','kitchen')
-            ->select('id','admin_name','email','role',)->get();
-
-        return view('admin.administrator.manage-staff', ['workers' => $workers]);
-    }
+    
     // ----------------------------------------------------------------
 
     // logout 
