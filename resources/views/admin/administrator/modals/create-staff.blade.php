@@ -12,7 +12,7 @@
             <select name="job" class=" px-5 py-2 focus:outline-0 border border-gray-200 appearance-none">
                 <option value="" disabled selected>Select Job</option>
                 <option value="waiter">Waiter</option>
-                <option value="kitchen">Chef</option>
+                <option value="kitchen">Kitchen</option>
             </select>
             <input type="text" name="password" placeholder="Password" class=" px-5 py-2 focus:outline-0 border border-gray-200">
             <input type="text" name="password_confirmation" placeholder="Confirm Password" class=" px-5 py-2 focus:outline-0 border border-gray-200">

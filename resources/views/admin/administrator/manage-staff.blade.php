@@ -8,6 +8,9 @@
     @if (session('DeleteStatus'))
         <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-md font-medium inter w-fit mx-auto">Success: {{session('DeleteStatus')}}</span>  
     @endif
+    @if (session('IdUpdationStatus'))
+        <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-md font-medium inter w-fit mx-auto">Success: {{session('IdUpdationStatus')}}</span>  
+    @endif
 
     <div class="w-full flex justify-end items-center flex-nowrap py-1 gap-2">
         <span class=" flex flex-nowrap gap-3 items-center mr-auto lexend font-bold text-3xl text-white bg-blue-500 text-shadow-sm pr-3 rounded-br-3xl rounded-tr-3xl shadow-lg">
@@ -43,7 +46,7 @@
                              
                             rounded-xl px-3 py-0.5 font-medium capitalize shadow">{{$worker->role}}</span></td>
                         <td class=" flex flex-row flex-nowrap gap-2 justify-center items-center">
-                            <form action="" method="get" class=" w-fit">
+                            <form action="{{ route('manage-worker.edit', $worker->id)}}" method="get" class=" w-fit">
                                 @csrf
                                 <button type="submit" class=" py-2 px-5 bg-emerald-600 shadow-md text-white rounded-md lexend">Edit</button>
                             </form>
