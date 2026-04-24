@@ -65,7 +65,8 @@ class ManageWorkerController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $worker = RestaurentAdmin::find($id);
+        return view('admin.administrator.edit-worker', compact('worker'));
     }
 
     /**
@@ -73,7 +74,42 @@ class ManageWorkerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+        $worker = RestaurentAdmin::find($id);
+        
+        if($worker->email != $request->email){
+            // if the email is not same as in the database we need to check that it is unique or not before updation.
+            // why, cause email should be unique if we change it.
+            $newData = $request->validate([
+                'name' => 'required',
+                'email' => 'required | email | unique:restaurent_admins,email',
+                'job' => 'required',
+                'password' => 'required | confirmed',
+            ]);
+
+
+            $worker->email = $newData['email'] ;
+            $worker->admin_name = $newData['name'] ;
+            $worker->role = $newData['job'] ;
+            $worker->password = $newData['password'] ;
+        } else {
+            // if the email is the same as in the database, then it is already a unique and no need to update it.
+            $newData = $request->validate([
+                'name' => 'required',
+                'email' => 'required | email',
+                'job' => 'required',
+                'password' => 'required | confirmed',
+            ]);
+
+            $worker->admin_name = $newData['name'];
+            $worker->role = $newData['job'] ;
+            $worker->password = $newData['password'] ;
+        }
+
+        $worker->save();
+
+        return redirect()->route('manage-worker.index')
+            ->with('IdUpdationStatus','Worker id has been updated successfully');
     }
 
     /**
