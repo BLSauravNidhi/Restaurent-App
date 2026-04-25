@@ -8,7 +8,7 @@ class Table extends Model
 {
     public $timestamps = false;
 
-    public function GetTableSessions(){
+    public function tblsessions(){
         return $this->hasMany(TableSession::class);
     }
 }
