@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::domain(env('APP_DOMAIN'))->group(function() {
     Route::get('/',[UserController::class, 'HomePage'])->name('HomePage');
-    Route::get('/table/{id}',[TableController::class, 'scanQR'])->name('ScanTableQR');
+    Route::get('/table/{id}',[TableController::class, 'GetTableAccess'])->name('GetTable');
 });
 
 Route::domain('admin.' . env('APP_DOMAIN'))->group(function() {

@@ -8,10 +8,10 @@ class TableSession extends Model
 {
     public $timestamps = false;
 
-    public function GetTable(){
+    public function table(){
         return $this->belongsTo(Table::class);
     }
-    public function GetCart(){
+    public function cart(){
         return $this->hasOne(Cart::class, 'session_id');
     }
 }
