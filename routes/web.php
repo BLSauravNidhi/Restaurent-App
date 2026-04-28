@@ -2,16 +2,22 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ManageWorkerController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\TableController;
-use App\Http\Controllers\UserController;
 use App\Http\Middleware\isLoggedIn;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::domain(env('APP_DOMAIN'))->group(function() {
-    Route::get('/',[UserController::class, 'HomePage'])->name('HomePage');
+    Route::get('/',[PageController::class, 'HomePage'])->name('HomePage');
+    
     Route::get('/table/{id}',[TableController::class, 'GetTableAccess'])->name('GetTable');
+    Route::get('/table/{id}/waiting',[TableController::class, 'WaitForApproval'])->name('WaitWhileApproving');
+    // polling route for cheking request approval 
+    Route::get('/api/request-status/{id}', [TableController::class, 'tableStatus'])->name('tableRequesStatusCheck');
+
+    Route::get('/menu/{tableNum}/{token}', [PageController::class, 'tableMenu'])->name('getMenu');
 });
 
 // Admins Routes 

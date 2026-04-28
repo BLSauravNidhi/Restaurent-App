@@ -7,6 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Restaurent - @yield('page-title')</title>
     <link rel="stylesheet" href="{{ asset('assets/css/app-basis.css')}}">
+    @stack('page-scripts')
 </head>
 <body>
     <nav class=" sticky z-10 w-screen h-15 flex flex-row flex-nowrap items-center bg-gray-800 justify-between px-4 text-white">

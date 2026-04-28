@@ -17,4 +17,8 @@ class RestaurentAdmin extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+
+    public function tblrequests(){
+        return $this->hasMany(TableSession::class);
+    }
 }

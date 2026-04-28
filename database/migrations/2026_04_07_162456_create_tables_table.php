@@ -22,12 +22,13 @@ return new class extends Migration
 
         Schema::create('table_requests', function (Blueprint $table) {
             $table->id();
-            $table->integer('table_number')->unique();
+            $table->foreignId('session_id')->nullable()->refrences('id')->on('table_sessions');
+            $table->integer('table_number');
             $table->foreign('table_number')->references('table_number')->on('tables');
-            $table->enum('request_status',['approved','pending'])->default('pending');
+            $table->enum('request_status',['approved','pending','rejected'])->default('pending');
             $table->timestamp('made_at')->useCurrent();
             $table->timestamp('approved_at')->nullable()->useCurrent();
-            $table->foreignId('approved_by')->references('id')->on('restaurent_admins')->nullable();
+            $table->foreignId('approved_by')->nullable()->constrained('restaurent_admins');
         });
     }
 
