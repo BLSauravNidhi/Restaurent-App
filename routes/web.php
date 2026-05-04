@@ -36,6 +36,9 @@ Route::domain('admin.' . env('APP_DOMAIN'))->group(function() {
             ]);
         });
 
+        Route::get('dashboard/table-status', [AdminController::class, 'tableStatus'])->name('TableStatus');
+        Route::get('dashboard/table-requests', [AdminController::class, 'tableRequests'])->name('TableRequests');
+
         Route::get('/logout',[AdminController::class, 'logout'])->name('logout');
     });
 });
