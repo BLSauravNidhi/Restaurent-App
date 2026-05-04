@@ -13,6 +13,6 @@ class Table extends Model
     }
 
     public function tblrequests(){
-        return $this->hasMany(TableSession::class);
+        return $this->hasMany(TableRequest::class);
     }
 }

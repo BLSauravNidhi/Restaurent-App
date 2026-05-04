@@ -10,7 +10,7 @@ class TableRequest extends Model
 
     protected $guarded = [];
 
-    public function table(){
-        return $this->belongsTo(Table::class);
+    public function tableinfo(){
+        return $this->belongsTo(Table::class, 'table_id');
     }
 }

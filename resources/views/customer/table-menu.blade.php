@@ -5,5 +5,5 @@
 @endsection
 
 @section('app-content')
-     {!! "Table = " . $tableNum . " <br> " . $token!!}
+     {!! "Table = " . $tableNum . " <br> " . $token !!}
 @endsection

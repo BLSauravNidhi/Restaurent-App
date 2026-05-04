@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Table;
+use App\Models\TableRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,6 +52,15 @@ class AdminController extends Controller
     }
     
     // ----------------------------------------------------------------
+    public function tableStatus(){
+        return view('admin.waiter.table-status');
+    }
+    public function tableRequests(){
+        $tableRequests = TableRequest::with('tableinfo')->where('request_status','pending')->get() ;
+
+        // return $tableRequests;
+        return view('admin.waiter.table-requests', ['tableRequests' => $tableRequests ]);
+    }
 
     // logout 
     public function logout(){
