@@ -53,14 +53,22 @@ class AdminController extends Controller
     
     // ----------------------------------------------------------------
     public function tableStatus(){
-        return view('admin.waiter.table-status');
+
+        $restaurentTables = Table::with(['tblsessions'=> function($query){
+            $query->Where('expires_at', '>', now());
+        }])->get();
+        // return $restaurentTables;
+        return view('admin.waiter.table-status', compact('restaurentTables'));
     }
+
+
     public function tableRequests(){
         $tableRequests = TableRequest::with('tableinfo')->where('request_status','pending')->get() ;
 
         // return $tableRequests;
         return view('admin.waiter.table-requests', ['tableRequests' => $tableRequests ]);
     }
+
 
     // logout 
     public function logout(){

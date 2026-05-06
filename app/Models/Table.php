@@ -9,7 +9,7 @@ class Table extends Model
     public $timestamps = false;
 
     public function tblsessions(){
-        return $this->hasMany(TableSession::class);
+        return $this->hasMany(TableSession::class, 'table_number', 'table_number');
     }
 
     public function tblrequests(){
