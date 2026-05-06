@@ -15,7 +15,7 @@
                 <div class=" p-3 flex flex-col gap-1">
                     <div class="info flex flex-col gap-0.5">
                         <h5 class=" font-bold lexend">Table No. {{ $request->tableinfo->table_number}}</h5>
-                        <p class=" text-sm text-gray-500 inter italic">You have a pending requests for this table. 
+                        <p class=" text-sm text-gray-500 inter italic">You have a pending request for this table. 
                             <br> Requested at : {{ \Carbon\Carbon::parse($request->made_at)->format('g:i A') }}
                             <br> Date : {{ \Carbon\Carbon::parse($request->made_at)->format('F j, Y') }}
                         </p>
