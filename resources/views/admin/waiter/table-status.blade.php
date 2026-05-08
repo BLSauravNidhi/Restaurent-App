@@ -11,14 +11,12 @@
             @foreach ($restaurentTables as $table)
                 <div class="req-card flex flex-col gap-2 w-65 h-45 p-2 bg-blue-100 rounded-3xl shadow-sm">
                     <div class="status w-full h-fit flex flex-nowrap items-center px-2">
-                        @switch($table->status)
-                            @case('occupied')
-                                <h5 class="ml-auto w-14.75 flex items-center justify-center flex-nowrap bg-orange-600 px-1.5 py-0.5 font-medium text-[10px] text-white rounded-md">Occupied</h5>
-                                @break
-                            @case('available')
-                                <h5 class="ml-auto w-14.75 flex items-center justify-center flex-nowrap bg-emerald-600 px-1.5 py-0.5 font-medium text-[10px] text-white rounded-md">Available</h5>
-                                @break
-                        @endswitch
+                        {{-- if active session exists then occupied, if not then available --}}
+                        @if ($table->tblsessions->first())
+                            <h5 class="ml-auto w-14.75 flex items-center justify-center flex-nowrap bg-orange-600 px-1.5 py-0.5 font-medium text-[10px] text-white rounded-md">Occupied</h5>
+                        @else
+                            <h5 class="ml-auto w-14.75 flex items-center justify-center flex-nowrap bg-emerald-600 px-1.5 py-0.5 font-medium text-[10px] text-white rounded-md">Available</h5>
+                        @endif
                     </div>
                     <div class="table-info w-full h-full p-2 bg-white rounded-3xl border border-gray-200 shadow-md">
                         <div class="w-full h-fit flex flex-nowrap items-center gap-3 fill-emerald-500">

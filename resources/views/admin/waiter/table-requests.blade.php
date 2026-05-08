@@ -21,14 +21,8 @@
                         </p>
                     </div>
                     <div class="w-full flex flex-nowrap gap-2">
-                        <form action="" method="get">
-                            <input type="hidden" name="request-action" value="accept">
-                            <button type="submit" class=" bg-blue-500 text-white px-2 py-1 rounded-md font-medium text-sm shadow-md">Accept</button>
-                        </form>
-                        <form action="" method="get">
-                            <input type="hidden" name="request-action" value="reject">
-                            <button type="submit" class=" bg-red-500 text-white px-2 py-1 rounded-md font-medium text-sm shadow-md">Reject</button>
-                        </form>
+                        <a href="{{ route('approveTableRequest', [Auth::guard('admin')->user()->id, $request->id]) }}" class=" bg-blue-500 text-white px-2 py-1 rounded-md font-medium text-sm shadow-md">Approve</a>
+                        <a href="{{ route('rejectTableRequest', [Auth::guard('admin')->user()->id, $request->id]) }}" class=" bg-red-500 text-white px-2 py-1 rounded-md font-medium text-sm shadow-md">Reject</a>
                     </div>
                 </div>
             </div>
