@@ -96,13 +96,20 @@ class AdminController extends Controller
         $approveRequest = TableRequest::where('id', $reqId)->update([
             'session_id' => $createSession->id,
             'request_status' => 'approved',
-            'approved_at' => now(),
-            'approved_by' => $adminId,
+            'status_updated_at' => now(),
+            'status_updated_by' => $adminId,
         ]);
 
         return redirect()->route('TableRequests');
     }
-    public function tableRequestRejected(string $admin, string $reqId){
+    public function tableRequestRejected(string $adminId, string $reqId){
+        // Reject request
+        $rejectRequest = TableRequest::whereId($reqId)->update([
+            'request_status' => 'rejected',
+            'status_updated_by' => $adminId,
+            'status_updated_at' => now(),
+        ]);
+
         return redirect()->route('TableRequests');
     }
 

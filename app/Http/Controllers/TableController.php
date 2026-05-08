@@ -38,7 +38,7 @@ class TableController extends Controller
             [
                 'table_id' => $tableInfo->id,
                 'request_status' => 'pending',
-                'approved_at' => NULL,
+                'status_updated_at' => NULL,
             ],
             [
                 'made_at' => now()
