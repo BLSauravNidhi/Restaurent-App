@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 use App\Models\Table;
 use App\Models\TableRequest;
+use App\Models\TableSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {   
@@ -69,6 +71,39 @@ class AdminController extends Controller
 
         // return $tableRequests;
         return view('admin.waiter.table-requests', ['tableRequests' => $tableRequests ]);
+    }
+
+    public function tableRequestApproved(string $adminId, string $reqId){
+        // first get the request info
+        $requestInfo = TableRequest::with('tableInfo')->find($reqId);
+        
+        // Generating unique token by checking token exists or not
+        do {
+            $token = (string) Str::uuid();
+        } while (TableSession::where('session_token', $token)->exists());
+        
+        // creating session for the table
+        $createSession = TableSession::create([
+            'table_number' => $requestInfo->tableInfo->table_number,
+            'session_token' => $token,
+            'active' => true,
+            'expires_at' => now()->addHours(1.5),
+            'ip_address' =>  \Request::ip(),
+            'user_agent' => NULL,
+        ]);
+        
+        // After creating session, providing session id and admin info to the TableRequests table
+        $approveRequest = TableRequest::where('id', $reqId)->update([
+            'session_id' => $createSession->id,
+            'request_status' => 'approved',
+            'approved_at' => now(),
+            'approved_by' => $adminId,
+        ]);
+
+        return redirect()->route('TableRequests');
+    }
+    public function tableRequestRejected(string $admin, string $reqId){
+        return redirect()->route('TableRequests');
     }
 
 

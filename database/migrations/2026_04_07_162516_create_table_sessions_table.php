@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('table_number')->references('table_number')->on('tables');
             $table->uuid('session_token')->unique();
             $table->boolean('active')->default(true);
-            $table->timestamp('started_at')->nullable();
+            $table->timestamp('started_at')->useCurrent();
             $table->timestamp('expires_at')->nullable();
             $table->string('ip_address')->nullable();
             $table->text('user_agent')->nullable();

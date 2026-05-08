@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->integer('table_number')->unique();
-            $table->string('qr_code')->nullable();
-            $table->enum('status',['available','occupied'])->default('available');
             $table->foreignId('status_updated_by')->references('id')->on('restaurent_admins')->nullable()->comment('FK restaurent_admins.id');
             $table->timestamp('status_updated_at')->nullable()->useCurrent();
         });
