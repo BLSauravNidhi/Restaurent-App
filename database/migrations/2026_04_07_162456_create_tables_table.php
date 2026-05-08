@@ -23,8 +23,8 @@ return new class extends Migration
             $table->foreignId('session_id')->nullable()->refrences('id')->on('table_sessions');
             $table->enum('request_status',['approved','pending','rejected'])->default('pending');
             $table->timestamp('made_at')->useCurrent();
-            $table->timestamp('approved_at')->nullable()->useCurrent();
-            $table->foreignId('approved_by')->nullable()->constrained('restaurent_admins');
+            $table->timestamp('status_updated_at')->nullable();
+            $table->foreignId('status_updated_by')->nullable()->constrained('restaurent_admins');
         });
     }
 
