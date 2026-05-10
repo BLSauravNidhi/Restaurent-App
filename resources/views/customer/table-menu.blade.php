@@ -5,5 +5,7 @@
 @endsection
 
 @section('app-content')
-     {!! "Table = " . $tableNum . " <br> " . $token !!}
+     <span>
+        Your Table's join Code : {{ $sessionInfo->session_join_code}}
+     </span>
 @endsection

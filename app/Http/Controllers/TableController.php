@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Table;
 use App\Models\TableRequest;
 use App\Models\TableSession;
+use Illuminate\Http\Request;
 
 // use Illuminate\Http\Request;
 
@@ -18,8 +19,9 @@ class TableController extends Controller
             ->where('expires_at', '>', now())->first();
         // if yes then redirect it to menu page with their table number and token
         if($hasSession){
+            // Verify join code page
             return redirect()
-                ->route('getMenu', ['tableNum' => $hasSession->table_number, 'token' => $hasSession->session_token]);
+                ->route('verifyTablePage', ['tableNum' => $hasSession->table_number, 'token' => $hasSession->session_token]);
         } else {
             // if session not exist the redirect to wait for approval page to get new token for table access
             return redirect()->route('WaitWhileApproving',$tableNum);
@@ -64,5 +66,24 @@ class TableController extends Controller
         return response()->json([
             'status' => $req->request_status
         ]);
+    }
+
+
+    public function verifyTable(Request $request){
+        $tableNum = $request['table-num'];
+        $token = $request['token'];
+
+        $verify = TableSession::where('session_join_code', $request['passcode'])
+            ->where('session_token', $token)
+            ->where('active', true)
+            ->where('expires_at', '>', now())
+            ->first();
+
+        if($verify){
+            return redirect()->route('getMenu', ['tableNum' => $tableNum, 'token' => $token]);
+        } else {
+            return redirect()
+                ->route('verifyTablePage', ['tableNum' => $tableNum, 'token' => $token]);
+        }
     }
 }

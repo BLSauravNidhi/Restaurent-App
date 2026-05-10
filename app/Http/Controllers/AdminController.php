@@ -88,9 +88,11 @@ class AdminController extends Controller
             'session_token' => $token,
             'active' => true,
             'expires_at' => now()->addHours(1.5),
+            'session_join_code' => str_pad(random_int(0, 9999), 4, '0', STR_PAD_LEFT),
             'ip_address' =>  \Request::ip(),
             'user_agent' => NULL,
         ]);
+
         
         // After creating session, providing session id and admin info to the TableRequests table
         $approveRequest = TableRequest::where('id', $reqId)->update([

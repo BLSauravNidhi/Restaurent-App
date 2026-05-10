@@ -18,9 +18,15 @@ class PageController extends Controller
             ->first();
         // return $verifyTableAccess ;
         if($verifyTableAccess){
-            return view('customer.table-menu', ['tableNum' => $tableNum, 'token' => $token]);
+            // Get Session Details
+            $sessionInfo = TableSession::where('session_token', $token)->first();
+            return view('customer.table-menu', ['sessionInfo' => $sessionInfo]);
         } else {
             return redirect()->route('HomePage');
         }
+    }
+
+    public function verifyTablePage(string $tableNum, string $token){
+        return view('customer.verify-passcode', ['tableNum' => $tableNum, 'token' => $token]);
     }
 }
