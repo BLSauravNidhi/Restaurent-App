@@ -17,6 +17,10 @@ Route::domain(env('APP_DOMAIN'))->group(function() {
     // polling route for cheking request approval 
     Route::get('/api/request-status/{id}', [TableController::class, 'tableStatus'])->name('tableRequesStatusCheck');
 
+
+    Route::get('/table/{tableNum}/{token}/verify', [PageController::class, 'verifyTablePage'])->name('verifyTablePage');
+    Route::post('/table/verify', [TableController::class, 'verifyTable'])->name('verifyTable');
+
     Route::get('/menu/{tableNum}/{token}', [PageController::class, 'tableMenu'])->name('getMenu');
 });
 

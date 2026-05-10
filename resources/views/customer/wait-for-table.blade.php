@@ -7,12 +7,19 @@
 @push('page-scripts')
     <script defer>
         // polling 
+        const menuUrlTemplate = "{{ route('getMenu', ['TABLE', 'TOKEN']) }}";
+
         setInterval(async () => {
-            const res = await fetch(`{{ route('tableRequesStatusCheck', $reqId)}}`);
+            const res = await fetch(`{{ route('tableRequesStatusCheck', $reqId) }}`);
             const data = await res.json();
-            
+
             if (data.status === 'approved') {
-                window.location.href = `/menu/${data.table_number}/${data.session_token}`;
+
+                const url = menuUrlTemplate
+                    .replace('TABLE', data.table_number)
+                    .replace('TOKEN', data.session_token);
+
+                window.location.href = url;
             }
 
             if (data.status === 'rejected') {

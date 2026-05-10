@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->timestamp('started_at')->useCurrent();
             $table->timestamp('expires_at')->nullable();
+            $table->string('session_join_code')->nullable();
             $table->string('ip_address')->nullable();
             $table->text('user_agent')->nullable();
         });
