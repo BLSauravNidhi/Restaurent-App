@@ -21,7 +21,7 @@ class TableController extends Controller
         if($hasSession){
             // Verify join code page
             return redirect()
-                ->route('verifyTablePage', ['tableNum' => $hasSession->table_number, 'token' => $hasSession->session_token]);
+                ->route('verifyTablePage', ['tableNum' => $hasSession->table_number]);
         } else {
             // if session not exist the redirect to wait for approval page to get new token for table access
             return redirect()->route('WaitWhileApproving',$tableNum);
@@ -68,22 +68,21 @@ class TableController extends Controller
         ]);
     }
 
-
+    // verifing table join paascode
     public function verifyTable(Request $request){
         $tableNum = $request['table-num'];
-        $token = $request['token'];
 
         $verify = TableSession::where('session_join_code', $request['passcode'])
-            ->where('session_token', $token)
             ->where('active', true)
             ->where('expires_at', '>', now())
             ->first();
 
         if($verify){
-            return redirect()->route('getMenu', ['tableNum' => $tableNum, 'token' => $token]);
+            return redirect()->route('getMenu', ['tableNum' => $tableNum, 'token' => $verify->session_token]);
         } else {
             return redirect()
-                ->route('verifyTablePage', ['tableNum' => $tableNum, 'token' => $token]);
+                // verification attempts limit will be included later
+                ->route('verifyTablePage', ['tableNum' => $tableNum]);
         }
     }
 }
