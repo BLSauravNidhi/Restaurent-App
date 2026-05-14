@@ -26,7 +26,7 @@ class PageController extends Controller
         }
     }
 
-    public function verifyTablePage(string $tableNum, string $token){
-        return view('customer.verify-passcode', ['tableNum' => $tableNum, 'token' => $token]);
+    public function verifyTablePage(string $tableNum ){
+        return view('customer.verify-passcode', ['tableNum' => $tableNum]);
     }
 }
