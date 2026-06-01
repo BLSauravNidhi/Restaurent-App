@@ -53,6 +53,10 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    
+    // Used Config in routes file insted of calling env 
+    'domain' => env('APP_DOMAIN', 'localhost'),
+
 
     /*
     |--------------------------------------------------------------------------
