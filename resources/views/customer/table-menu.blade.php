@@ -29,7 +29,7 @@
                     if (data.success) {
                         this.classList.remove('add-to-cart');
                         this.innerHTML = '<svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>';
-                        this.parentNode.classList.replace('bg-red-500','bg-lime-600');
+                        this.parentNode.classList.add('bg-lime-600');
                     }
                 })
                 .catch(error => console.log('Error:', error));
@@ -45,10 +45,10 @@
         <div class=" flex flex-row flex-nowrap items-center overflow-x-scroll gap-3 py-6">
             {{-- Top food list start --}}
             @foreach ($viewData['categories'] as $category)
-                <div class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
+                <a href="" class=" w-26 h-26 bg-gray-200 text-center flex flex-col justify-center items-center shrink-0 gap-2 rounded-2xl">
                     <img src="{{ $category->image}}" class="w-10 h-10 rounded-4xl mix-blend-multiply brightness-120 bg-gray-200">
                     <p class="font-medium text-black lexend">{{ $category->name }}</p>
-                </div>
+                </a>
             @endforeach
             </div>
             {{-- Top food list end --}}
@@ -76,7 +76,7 @@
             
             {{-- Items Start  --}}
             @foreach ($viewData['menuItems'] as $item)
-                <div class="w-90 h-32 shrink- rounded-2xl bg-gray-200 overflow-hidden relative grid grid-cols-[35%_auto_25%]">
+                <div class="w-90 h-38 shrink-0 rounded-2xl bg-gray-200 overflow-hidden relative grid grid-cols-[35%_auto_25%]">
                 <span class=" absolute top-0 left-0 bg-black text-white rounded-br-2xl px-2 py-1.5 text-xs font-medium rubik">34% off</span>
                 <div class="flex justify-end items-center">
                     <img src="{{ $item->image}}" alt="" class=" scale-75 w-38 mix-blend-multiply aspect-square">
@@ -87,8 +87,10 @@
                     <span class=" w-fit bg-orange-600 px-2 py-0.5 rounded-md font-medium text-sm text-white rubik">Offer</span>
                     <p class=" font-bold ">₹{{ $item->price}}</p>
                 </div>
-                <div class=" fill-black flex flex-col items-end justify-between p-3">
-                    <svg viewBox="0 -960 960 960" class=" w-7 h-7 bg-white rounded-3xl p-1"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>
+                <div class=" flex flex-col items-end justify-between p-3">
+                    <svg viewBox="0 0 24 24" class=" w-7 h-7 bg-white fill-gray-500 rounded-3xl p-1">
+                        <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z"/>
+                    </svg>
                             @php
                                 // Pluck all item IDs into an array for a fast, clean check
                                 $cartItemIds = $viewData['cartItems'] ? $viewData['cartItems']->GetItems->pluck('menu_item_id')->toArray() : [];
@@ -105,9 +107,9 @@
                                 </span>
                             @else
                                 <!-- Plus Icon (Item is NOT in cart) -->
-                                <span item-id="{{ $item->id}}" class=" cart-item w-fit h-fit flex flex-nowrap justify-center items-center text-center bg-red-500 text-white rounded-2xl font-bold overflow-hidden">
+                                <span item-id="{{ $item->id}}" class=" cart-item w-fit h-fit flex flex-nowrap justify-center items-center text-cente fill-black rounded-2xl font-bold overflow-hidden">
                                     <button class=" add-to-cart">
-                                        <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff">
+                                        <svg height="24px" viewBox="0 -960 960 960" width="24px" fill="#000">
                                             <path d="M440-120v-320H120v-80h320v-320h80v320h320v80H520v320h-80Z"/>
                                         </svg>
                                     </button>
@@ -116,10 +118,8 @@
                 </div>
             </div>
             @endforeach
-
             {{-- Items End  --}}
         </div>
-
     </section>
-    <div class="w-full h-screen"></div>
+    <div class="w-full h-15"></div>
 @endsection
