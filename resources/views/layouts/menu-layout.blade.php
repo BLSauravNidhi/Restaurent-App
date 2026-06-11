@@ -7,6 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Restaurent - @yield('page-title')</title>
     <link rel="stylesheet" href="{{ asset('assets/css/customer-ui.css')}}">
+    @livewireStyles
 </head>
 <body>
     <div class=" sticky bg-white
@@ -18,5 +19,6 @@
     <div class="w-full h-15"></div>
     @include('components.table-navbar')
     @stack('page-scripts')
+    @livewireScripts
 </body>
 </html>

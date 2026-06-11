@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\CartItem;
-use App\Models\TableSession;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -54,36 +52,7 @@ class CartController extends Controller
      */
     public function store(Request $request ,$tableNum ,$token)
     {
-        $request->validate([
-            'item_id' => 'required',
-        ]);
-        // check if there is any cart   
-        $sessionInfo = TableSession::where('session_token', $token)->first();
-        $cart = Cart::firstOrCreate(
-            [
-                'session_id' => $sessionInfo->id,
-                'cart_status' => 'pending'
-            ],
-            ['session_id' => $sessionInfo->id]
-        );  
-        if($cart){
-            $addItmes = CartItem::updateOrCreate(
-                [
-                    'cart_id' => $cart->id,
-                    'menu_item_id' => $request->item_id,
-                ],
-                [ 
-                    'quantity' => 1,
-                ]
-            );
-            if($addItmes){
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Cart updated successfully!'
-                ]);
-            }
-        }
-        
+        //    
     }
 
     /**
