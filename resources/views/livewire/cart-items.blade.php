@@ -9,7 +9,7 @@
         <div class="w-full flex justify-between items-center">
             {{-- <p class=" font-bold rubik">Total ₹{{ $item->price * $item->pivot->quantity }}</p> --}}
             <span class=" w-full h-fit flex flex-nowrap justify-between items-center text-cente fill-black rounded-2xl font-bold gap-3">
-                <button wire:click="decreament" class=" flex items-center justify-center px-2.5 py-1 {{ $quantity==1 ? 'bg-gray-200 text-black': 'bg-lime-400 text-white'}} shadow-lg rounded-4xl ">&minus;</button>
+                <button wire:click="decreament" class=" flex items-center justify-center px-2.5 py-1 {{ $quantity==1 ? 'bg-gray-200 text-black': 'bg-lime-400 text-white shadow-lg'}} rounded-4xl ">&minus;</button>
                 <p>{{ $quantity }}</p>
                 <button wire:click="increament" class=" flex items-center justify-center px-2.5 py-1 bg-lime-400 shadow-lg rounded-4xl text-white">&plus;</button>
             </span>
