@@ -25,8 +25,10 @@ Route::domain(config('app.domain'))->group(function() {
 
     // Menu & Cart
     Route::middleware(['validate.table'])->group(function() {
-        Route::get('/menu/{tableNum}/{token}', [PageController::class, 'tableMenu'])->name('getMenu');
-        Route::resource('/menu/{tableNum}/{token}/cart', CartController::class);
+        Route::prefix('/{tableNum}/{token}')->group(function(){
+            Route::get('/menu', [PageController::class, 'tableMenu'])->name('getMenu');
+            Route::resource('/cart', CartController::class); 
+        });
     });
 });
 
