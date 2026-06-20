@@ -32,4 +32,9 @@ class PageController extends Controller
     public function verifyTablePage(string $tableNum ){
         return view('customer.verify-passcode', ['tableNum' => $tableNum]);
     }
+
+    public function getOrdersPage(Request $request){
+        $sessionInfo = $request->attributes->get('tableSession');
+        return view('customer.orders', [ 'sessionInfo' => $sessionInfo]);
+    }
 }

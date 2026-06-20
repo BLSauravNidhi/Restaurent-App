@@ -28,6 +28,7 @@ Route::domain(config('app.domain'))->group(function() {
         Route::prefix('/{tableNum}/{token}')->group(function(){
             Route::get('/menu', [PageController::class, 'tableMenu'])->name('getMenu');
             Route::resource('/cart', CartController::class); 
+            Route::get('/orders',[PageController::class, 'getOrdersPage'])->name('ordersPage');
         });
     });
 });

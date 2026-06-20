@@ -20,7 +20,7 @@
         Cart
     </a>
 
-    <a href="" class=" px-5 flex flex-col justify-between items-center text-white text-xs font-medium">
+    <a href="{{ route('ordersPage',[$sessionInfo->table_number, $sessionInfo->session_token])}}" class=" px-5 flex flex-col justify-between items-center text-white text-xs font-medium">
         <svg viewBox="0 0 24 24" class=" w-8 h-8 pointer-events-none"><path d="M24,22a1,1,0,0,1-1,1H1a1,1,0,0,1,0-2H23A1,1,0,0,1,24,22ZM2,19H22a1,1,0,0,0,1-1V17A11.01,11.01,0,0,0,13,6.051V4.723a2,2,0,1,0-2,0V6.051A11.01,11.01,0,0,0,1,17v1A1,1,0,0,0,2,19Z"/></svg>
         Order
     </a>

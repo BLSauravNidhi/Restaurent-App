@@ -10,7 +10,7 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, $tableNum, $token)
+    public function index(Request $request)
     {
         // Grab the pre-validated session attached by the middleware
         $sessionInfo = $request->attributes->get('tableSession');
@@ -74,9 +74,16 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request)
     {
-        //
+        $sessionInfo = $request->attributes->get('tableSession');
+        $place_order = Cart::where('session_id',$sessionInfo->id)
+                        ->update(['cart_status'=> 'ordered']);
+        if($place_order){
+            return redirect()->route('ordersPage',[$sessionInfo->table_number, $sessionInfo->session_token]);
+        } else {
+            return response()->json(['request'=>'rejected']);
+        }
     }
 
     /**

@@ -17,8 +17,10 @@
             @endforeach 
         </div>
         <livewire:cart-total :sessionInfo="$sessionInfo"/>
-        <div class="w-full px-5 py-2 flex justify-center items-center my-8">
-            <a href="" class=" w-87 text-center bg-lime-500 text-white px-3 py-1 5 rounded-md font-bold shadow-md">Place Order</a>
-        </div>
+        <form method="post" action="{{route('cart.update',[$sessionInfo->table_number,$sessionInfo->session_token, 'place-order'])}}" class="w-full px-5 py-2 flex justify-center items-center my-8">
+            @csrf
+            @method('PUT')
+            <button type="submit" class=" w-87 text-center bg-lime-500 text-white px-3 py-1 5 rounded-md font-bold shadow-md">Place Order</button>
+        </form>
     @endif
 @endsection
